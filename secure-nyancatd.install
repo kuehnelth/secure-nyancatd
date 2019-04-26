@@ -1,0 +1,16 @@
+generate_key() {
+	mkdir -p /etc/secure-nyancatd
+	if [ ! -f /etc/secure-nyancatd/ssh_host_rsa_key ]; then
+		ssh-keygen -q -t rsa -f /etc/secure-nyancatd/ssh_host_rsa_key -N ""
+	fi
+	chown daemon /etc/secure-nyancatd/ssh_host_rsa_key
+	setcap cap_net_bind_service=+ep /usr/bin/secure-nyancatd
+}
+
+post_install() {
+	generate_key
+}
+
+post_upgrade() {
+	generate_key
+}

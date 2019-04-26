@@ -17,7 +17,7 @@ import (
 
 var (
 	port            = flag.Int("port", 22, "SSH server port")
-	hostKeyFilePath = flag.String("host-key", "/etc/ssh/ssh_host_rsa_key", "ID RSA SSH Host key")
+	hostKeyFilePath = flag.String("host-key", "/etc/secure-nyancatd/ssh_host_rsa_key", "ID RSA SSH Host key")
 )
 
 func setWinsize(f *os.File, w, h int) {

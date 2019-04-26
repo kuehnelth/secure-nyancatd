@@ -1,7 +1,7 @@
 # Maintainer: Thomas Kühnel <kuehnelth@gmail.com>
 
 pkgname=secure-nyancatd
-pkgver=r9.f5be6fa
+pkgver=r11.0011011
 pkgrel=1
 pkgdesc='Secure nyancat server'
 url=https://github.com/kuehnelth/secure-nyancatd
@@ -12,6 +12,7 @@ makedepends=('git' 'go')
 source=("$pkgname::git+http://github.com/kuehnelth/$pkgname")
 md5sums=('SKIP')
 sha1sums=('SKIP')
+install=secure-nyancatd.install
 
 pkgver() {
   cd "$srcdir/$pkgname"
