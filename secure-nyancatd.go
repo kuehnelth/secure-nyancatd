@@ -1,16 +1,23 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"io"
 	"log"
 	"os"
 	"os/exec"
+	"strconv"
 	"syscall"
 	"unsafe"
 
 	"github.com/gliderlabs/ssh"
 	"github.com/kr/pty"
+)
+
+var (
+	port            = flag.Int("port", 2222, "SSH server port")
+	hostKeyFilePath = flag.String("host-key", "id_rsa", "ID RSA SSH Host key")
 )
 
 func setWinsize(f *os.File, w, h int) {
@@ -44,6 +51,7 @@ func main() {
 		}
 	})
 
-	log.Println("starting ssh server on port 2222...")
-	log.Fatal(ssh.ListenAndServe(":2222", nil))
+	portString := strconv.Itoa(*port)
+	log.Println("starting nyancat server on port " + portString)
+	log.Fatal(ssh.ListenAndServe(":" + portString, nil, ssh.HostKeyFile(*hostKeyFilePath)))
 }
