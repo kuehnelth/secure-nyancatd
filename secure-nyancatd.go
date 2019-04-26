@@ -26,6 +26,8 @@ func setWinsize(f *os.File, w, h int) {
 }
 
 func main() {
+	flag.Parse()
+
 	ssh.Handle(func(s ssh.Session) {
 		cmd := exec.Command("nyancat")
 		ptyReq, winCh, isPty := s.Pty()
