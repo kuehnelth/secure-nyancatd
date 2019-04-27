@@ -1,13 +1,13 @@
 # Maintainer: Thomas Kühnel <kuehnelth@gmail.com>
 
 pkgname=secure-nyancatd
-pkgver=r11.0011011
+pkgver=r12.1010100
 pkgrel=1
 pkgdesc='Secure nyancat server'
 url=https://github.com/kuehnelth/secure-nyancatd
-arch=('x86_64')
+arch=('i686' 'x86_64' 'armv7h' 'armv6h' 'aarch64')
 license=('BSD')
-depends=('glibc')
+depends=('glibc' 'nyancat')
 makedepends=('git' 'go')
 source=("$pkgname::git+http://github.com/kuehnelth/$pkgname")
 md5sums=('SKIP')
