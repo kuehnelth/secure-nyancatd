@@ -29,6 +29,7 @@ func main() {
 	flag.Parse()
 
 	ssh.Handle(func(s ssh.Session) {
+		log.Println("New SSH session from " + s.RemoteAddr().String())
 		cmd := exec.Command("nyancat")
 		ptyReq, winCh, isPty := s.Pty()
 		if isPty {
