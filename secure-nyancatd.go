@@ -9,6 +9,7 @@ import (
 	"os/exec"
 	"strconv"
 	"syscall"
+	"time"
 	"unsafe"
 
 	"github.com/gliderlabs/ssh"
@@ -35,6 +36,7 @@ func main() {
 		if isPty {
 			cmd.Env = append(cmd.Env, fmt.Sprintf("TERM=%s", ptyReq.Term))
 			f, err := pty.Start(cmd)
+			start := time.Now()
 			if err != nil {
 				panic(err)
 			}
@@ -48,6 +50,8 @@ func main() {
 			}()
 			io.Copy(s, f) // stdout
 			cmd.Wait()
+			elapsed := time.Since(start)
+			log.Printf("%s nyaned for %f seconds", s.RemoteAddr().String(), elapsed.Seconds())
 		} else {
 			io.WriteString(s, "No PTY requested.\n")
 			s.Exit(1)
